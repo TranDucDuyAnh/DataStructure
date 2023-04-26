@@ -21,7 +21,7 @@ class DoublyLinkedList:
         self.head = new_node    # Gán head cho nút mới
         print("Đã thêm nút giá trị", value, "vào đầu danh sách")
 
-    # Chèn nút vào danh sách
+    # Thêm nút sau nút được chỉ định
     def add_after(self, node_value, value):
         curr_node = self.head
         while curr_node.data != node_value:
@@ -37,33 +37,38 @@ class DoublyLinkedList:
             new_node.next.prev = new_node
         print("Đã thêm nút giá trị", value, "vào sau nút", curr_node.data)
 
-    # Xóa nút ở đầu danh sách
+    # Xóa nút
     def remove_node(self, value):
-        if self.head is None:
+        if self.head is None:   # Danh sách trống
             print("Danh sách trống!")
             return
-        if (self.head.next is None) and (self.head.data == value):
+        if (self.head.next is None) and (self.head.data == value):  # Chỉ có nút head thỏa mãn giá trị value
             self.head = None
             print("Nút duy nhất trong danh sách đã bị xóa!")
             return
-        curr_node = self.head
+        curr_node = self.head   # Duyệt từng nút bắt đầu từ nút head
+        # Nếu nút head có giá trị value & không phải nút duy nhất, gán head cho nút nằm sau nó và xóa nút
         if self.head.data == value:
             self.head = self.head.next
             self.head.prev = None
             print("Đã xóa nút có giá trị", curr_node.data)
             curr_node.data = None
             return
+        # Duyệt cho đến khi nút có giá trị bằng value
         while curr_node.data != value:
             if curr_node.next is None:
                 print("Node không tồn tại")
                 return
             curr_node = curr_node.next
+        # Nếu sau nút curr_node không có nút nào thì cho nút nằm sau trỏ về None
         if curr_node.next is None:
             curr_node.prev.next = None
+        # Nếu không thì cho 2 nút 2 bên nút curr_node trỏ qua về với nhau
         else:
             curr_node.prev.next = curr_node.next
             curr_node.next.prev = curr_node.prev
         print("Đã xóa nút có giá trị", curr_node.data)
+        # Chuyển hết về None
         curr_node.data = None
         curr_node.next = None
         curr_node.prev = None
@@ -77,12 +82,19 @@ class DoublyLinkedList:
 
 
 if __name__ == "__main__":
+    # Bắt đầu bằng 1 giá trị bất kì
     first_val = input("Nhập một giá trị để bắt đầu danh sách liên kết kép: ")
+    # Tạo một danh sách liên kết kép và gán head cho node với giá trị đã nhập vừa rồi
     linked_list = DoublyLinkedList()
     linked_list.head = Node(first_val)
     finish = False
+    # Tạo vòng lặp vĩnh cửu, chương trình chỉ kết thúc khi finish = True
     while finish is not True:
         print()
+        # Đoạn mã nhập lệnh bằng số đơn giản
+        # Kiểm tra nếu số người dùng nhập vào là hợp lệ:
+        # + Nếu hợp lệ thì thực hiện 1 trong những lệnh liệt kê bên dưới
+        # + Nếu không thì báo lỗi và cho người dùng nhập lại
         print("HELP: 11 - Thêm vào đâu, 12 - Thêm sau nút")
         print("HELP: 2 - In, 3 - Xóa, 4 - Kết thúc")
         select = abs(int(input("Chọn 1 lệnh để thực hiện: ")))

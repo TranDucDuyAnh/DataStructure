@@ -1,4 +1,5 @@
-# Hai list dưới là các trường hợp quân mã có thể đi
+# 8 trường hợp có thể di chuyển của quân mã
+# Ví dụ 2 giá trị x, y đầu tiên = -2, -1 có nghĩa là di chuyển 2 ô về bên trái và 1 ô lên trên
 kx_move = [-2, -2, -1, -1, 1, 1, 2, 2]
 ky_move = [-1, 1, -2, 2, -2, 2, -1, 1]
 

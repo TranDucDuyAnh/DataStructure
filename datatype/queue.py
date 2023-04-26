@@ -1,4 +1,5 @@
 class Queue:
+    # Khởi tạo queue bằng 1 list trống
     def __init__(self):
         self.queue = list()
 
@@ -12,6 +13,7 @@ class Queue:
         else:
             print("Giá trị đã nằm trong queue!")
 
+    # In queue
     def print_queue(self):
         print("Queue hiện tại:", self.queue)
         print("Kích thước của queue:", self.size())
@@ -32,11 +34,17 @@ class Queue:
 
 if __name__ == "__main__":
     test_queue = Queue()
+    # Bắt đầu bằng 1 giá trị bất kì
     first_val = input("Nhập một giá trị để bắt đầu queue: ")
     test_queue.add(first_val)
     finish = False
+    # Tạo vòng lặp vĩnh cửu, chương trình chỉ kết thúc khi finish = True
     while finish is not True:
         print()
+        # Đoạn mã nhập lệnh bằng số đơn giản
+        # Kiểm tra nếu số người dùng nhập vào là hợp lệ:
+        # + Nếu hợp lệ thì thực hiện 1 trong những lệnh liệt kê bên dưới
+        # + Nếu không thì báo lỗi và cho người dùng nhập lại
         print("HELP: 1 - Thêm, 2 - In, 3 - Xóa, 4 - Kết thúc")
         select = abs(int(input("Chọn 1 lệnh để thực hiện: ")))
         if (select > 4) or (select < 1):

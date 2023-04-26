@@ -23,6 +23,9 @@ class LinkedList:
             temp = temp.next
 
     # Hàm thêm node vào đầu danh sách
+    # 1. Tạo node mới
+    # 2. Cho ô next node mới trỏ vào node đầu
+    # 3. Gán node đầu cho node mới
     def add_at_beginning(self, value):
         new_node = Node(value)
         new_node.next = self.head
@@ -30,6 +33,10 @@ class LinkedList:
         print("Đã thêm nút giá trị", value, "vào đầu danh sách")
 
     # Hàm thêm node vào cuối danh sách
+    # 1. Tạo node mới
+    # 2. Nếu danh sách trống, gán head cho node mới
+    # 3. Di chuyển đến node cuối danh sách
+    # 4. Cho ô next node đó trỏ vào node mới
     def add_at_end(self, value):
         new_node = Node(value)
         if self.head is None:
@@ -41,7 +48,11 @@ class LinkedList:
         last.next = new_node
         print("Đã thêm nút giá trị", value, "vào cuối danh sách")
 
-    # Hàm thêm node vào giữa 2 node có sẵn trong danh sách
+    # Hàm thêm node vào sau một node được chỉ định (nếu tồn tại)
+    # 1. Duyệt hết danh sách đến khi tìm thấy node chỉ định, nếu không tìm thấy thì báo lỗi
+    # 2. Tạo node mới
+    # 3. Cho ô next của node mới trỏ vào node mà ô next của node chỉ định trỏ vào
+    # 4. Cho ô next của node chỉ định trỏ vào node mới
     def add_after(self, node_value, value):
         curr_node = self.head
         while curr_node.data != node_value:
@@ -55,6 +66,11 @@ class LinkedList:
         print("Đã thêm nút giá trị", value, "vào sau nút", curr_node.data)
 
     # Xóa 1 node
+    # 1. Kết thúc ngay khi danh sách trống
+    # 2. Xóa node duy nhất head khi thỏa mãn giá trị value
+    # 3. Nếu node head có giá trị value và không phải node duy nhất, gán head cho node nằm sau nó và xóa node
+    # 4. Duyệt cho đến khi đến node có giá trị value, đồng thời gán prev_node cho node nằm sau node đang duyệt
+    # 5. Cho ô next prev_node trỏ vào node mà curr_node trỏ vào và xóa curr_node
     def remove_node(self, value):
         if self.head is None:
             print("Danh sách trống!")
@@ -82,13 +98,19 @@ class LinkedList:
 
 
 if __name__ == '__main__':
-    # Bắt đầu bằng list trống
+    # Bắt đầu bằng 1 giá trị bất kì
     first_val = input("Nhập một giá trị để bắt đầu danh sách liên kết đơn: ")
+    # Tạo một danh sách liên kết đơn và gán head cho node với giá trị đã nhập vừa rồi
     linked_list = LinkedList()
     linked_list.head = Node(first_val)
     finish = False
+    # Tạo vòng lặp vĩnh cửu, chương trình chỉ kết thúc khi finish = True
     while finish is not True:
         print()
+        # Đoạn mã nhập lệnh bằng số đơn giản
+        # Kiểm tra nếu số người dùng nhập vào là hợp lệ:
+        # + Nếu hợp lệ thì thực hiện 1 trong những lệnh liệt kê bên dưới
+        # + Nếu không thì báo lỗi và cho người dùng nhập lại
         print("HELP: 11 - Thêm vào đâu, 12 - Thêm vào cuối, 13 - Thêm sau nút")
         print("HELP: 2 - In, 3 - Xóa, 4 - Kết thúc")
         select = abs(int(input("Chọn 1 lệnh để thực hiện: ")))

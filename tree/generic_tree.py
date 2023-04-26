@@ -1,21 +1,30 @@
+# Đối tượng node
 class Node:
+    # Khởi tạo node với 2 thuộc tính
+    # + children chứa list các node con
+    # + value chứa giá trị của node đó
     def __init__(self, value):
         self.children = []
         self.value = value
 
+    # Hàm thêm nút con
     def add_child(self, child):
         print("Đã thêm nút con", child.value, "vào nút", self.value)
         self.children.append(child)
 
 
+# Đối tượng cây cơ bản
 class GenericTree:
+    # Khởi tạo với thuộc tính root chứa node gốc
     def __init__(self):
         self.root = None
 
+    # Thêm nút gốc
     def add_root_node(self, value):
         print("Đã thêm nút giá trị", value, "là nút gốc của cây")
         self.root = Node(value)
 
+    # Thêm một nút con vào 1 nút cha sử dụng duyệt cây theo thứ tự trước
     def find_node_to_add(self, curr, child, father):
         if curr.value == father:
             curr.add_child(Node(child))
@@ -24,9 +33,10 @@ class GenericTree:
             for i in range(0, len(curr.children)):
                 self.find_node_to_add(curr.children[i], child, father)
 
+    # In tất cả các nút với danh sách các nút con của nút đó (nếu có) sử dụng duyệt cây theo thứ tự trước
     def print_all_nodes(self, curr):
         print(curr.value, "->", [child.value for child in curr.children])
-        if len(curr.children) != 0:  # Kiểm tra nếu nút có con, nếu có thì duyệt các nút con từ trái -> phải
+        if len(curr.children) != 0:
             for i in range(0, len(curr.children)):
                 self.print_all_nodes(curr.children[i])
 
@@ -48,12 +58,19 @@ def postorder_traversal(node):
 
 
 if __name__ == '__main__':
+    # Bắt đầu bằng 1 giá trị bất kì
     first_val = input("Nhập một giá trị để bắt đầu một cây cơ bản: ")
+    # Tạo một cây cơ bản với nút gốc chứa giá trị vừa nhập
     generic_tree = GenericTree()
     generic_tree.add_root_node(first_val)
     finish = False
+    # Tạo vòng lặp vĩnh cửu, chương trình chỉ kết thúc khi finish = True
     while finish is not True:
         print()
+        # Đoạn mã nhập lệnh bằng số đơn giản
+        # Kiểm tra nếu số người dùng nhập vào là hợp lệ:
+        # + Nếu hợp lệ thì thực hiện 1 trong những lệnh liệt kê bên dưới
+        # + Nếu không thì báo lỗi và cho người dùng nhập lại
         print("HELP: 1 - Danh sách nút, 2 - Thêm nút con, 3 - Duyệt cây, 4 - Kết thúc")
         select = abs(int(input("Chọn 1 lệnh để thực hiện: ")))
         if select == 1:

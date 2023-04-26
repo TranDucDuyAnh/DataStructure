@@ -2,21 +2,27 @@ import pygame
 
 
 def make_screen(n, queen_pos):
-    X = 400  # Chiều dài màn hình
-    Y = 400  # Chiều rộng màn hình
+    # Khởi tạo cửa sổ 400x400 với tên cửa sổ là Result
+    # biến size là đối tượng trong cửa sổ, ta sẽ vẽ lên trên đối tượng này
+    X = 400
+    Y = 400
     pygame.init()  # Khởi động pygame
     scrn_display = pygame.display
     scrn_display.set_caption("Result")
     size = scrn_display.set_mode([X, Y])
 
-    window = True  # Để window mode
-    while window: # Lặp infinite
+    window = True
+    # Vòng lặp vĩnh cửu
+    while window:
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:  # Khi thoát cửa sổ, đặt giá trị False để thoát vòng lặp
+            # Khi thoát khỏi cửa sổ, vòng lặp kết thúc
+            if event.type == pygame.QUIT:
                 window = False
 
-        size.fill((210, 210, 210))  # Lắp đầy cửa sổ bằng màu xám sáng
-        # Vẽ từng ô vuông màu đen
+        # Lắp đầy cửa sổ bằng màu xám sáng
+        size.fill((210, 210, 210))
+        # Vòng lặp này vẽ các ô vuông màu đen so le với nhau
+        # Kết hợp với màu nền khi nãy, ta có một bàn cờ vua
         for i in range(n):
             for j in range(n):
                 if (i + j) % 2 == 0:
