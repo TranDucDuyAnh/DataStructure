@@ -7,9 +7,11 @@ def bubble_sort(array, ascending):
             if ascending is True:  # Sắp xếp tăng dần
                 if array[j] > array[j + 1]:  # Nếu phần tử trước lớn hơn phần tử sau
                     array[j], array[j + 1] = array[j + 1], array[j]  # Hoán đổi
+                    print("(Đổi chỗ:", array[j+1], str(array[j]) + ")", end = " ")
             else:  # Tương tự ngược lại
                 if array[j] < array[j + 1]:
                     array[j], array[j + 1] = array[j + 1], array[j]
+                    print("(Đổi chỗ:", array[j+1], str(array[j]) + ")", end=" ")
             print(array)  # In bước
 
 
