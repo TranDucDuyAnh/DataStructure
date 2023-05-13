@@ -23,7 +23,7 @@ def partition(array, low, high, ascending):
 
                 # Xáo phần tử i với phần tử j
                 (array[i], array[j]) = (array[j], array[i])
-                print(array, "   ", i)
+                print(array)
         else:
             if array[j] >= pivot:
                 # Nếu tìm thấy phần tử lớn hơn phần tử chốt
@@ -32,11 +32,11 @@ def partition(array, low, high, ascending):
 
                 # Xáo phần tử i với phần tử j
                 (array[i], array[j]) = (array[j], array[i])
-                print(array, "   ", i)
+                print(array)
 
     # Xáo phần tử chốt với phần tử lớn hơn trỏ bởi i
     (array[i + 1], array[high]) = (array[high], array[i + 1])
-    print(array, "   ", i)
+    print(array)
 
     # Trả về vị trí tách đôi mảng
     return i + 1

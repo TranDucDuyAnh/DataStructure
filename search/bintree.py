@@ -1,3 +1,7 @@
+# Đối tượng nút với 3 thuộc tính
+# + value: giá trị nút
+# + left: nút con bên trái
+# + right: nút con bên phải
 class Node:
     def __init__(self, value):
         self.value = value
@@ -5,30 +9,37 @@ class Node:
         self.right = None
 
 
+# Đối tượng cây nhị phân với thuộc tính nút rễ
 class BinaryTree:
     def __init__(self):
         self.root = None
 
+    # Hàm thêm nút rễ
     def add_root_node(self, value):
         print("Đã thêm nút giá trị", value, "là nút gốc của cây")
         self.root = Node(value)
 
+    # Hàm thêm nút mới giá trị value
     def add_new_node(self, value, curr):
+        # Cây nhị phân tìm kiếm không có các nút có giá trị lặp lại
         if value == curr.value:
             print("Nút có giá trị", value, "đã tồn tại")
+        # Nếu value nhỏ hơn giá trị nút hiện tại
         elif value < curr.value:
-            if curr.left is None:
+            if curr.left is None:  # Nút con trái không tồn tại thì tạo nút mới
                 curr.left = Node(value)
                 return
-            else:
+            else:  # Còn không thì tiếp tục kiểm tra
                 self.add_new_node(value, curr.left)
+        # Nếu value lớn hơn giá trị nút hiện tại
         elif value > curr.value:
-            if curr.right is None:
+            if curr.right is None:  # Nút con phải không tồn tại thì tạo nút mới
                 curr.right = Node(value)
                 return
-            else:
+            else:  # Còn không thì tiếp tục kiểm tra
                 self.add_new_node(value, curr.right)
 
+    # Hàm in hết nút với các nút con của chúng
     def print_all_nodes(self, root):
         if root:
             if (root.left is None) and (root.right is not None):
@@ -42,20 +53,24 @@ class BinaryTree:
             self.print_all_nodes(root.left)
             self.print_all_nodes(root.right)
 
+    # Hàm tìm nút giá trị value
     def find_node(self, value, curr):
+        # Nếu tìm thấy
         if value == curr.value:
             print("Nút có giá trị", value, "tồn tại")
+        # Nếu value nhỏ hơn giá trị nút hiện tại
         elif value < curr.value:
-            if curr.left is None:
+            if curr.left is None:  # Cùng đường
                 print("Không tìm thấy nút")
                 return
-            else:
+            else:  # Tiếp tục tìm
                 self.find_node(value, curr.left)
+        # Nếu value lớn hơn giá trị nút hiện tại
         elif value > curr.value:
-            if curr.right is None:
+            if curr.right is None:  # Cùng đường
                 print("Không tìm thấy nút")
                 return
-            else:
+            else:  # Tiếp tục tìm
                 self.find_node(value, curr.right)
 
 
@@ -65,9 +80,10 @@ if __name__ == '__main__':
     # Tạo một cây nhị phân với nút gốc chứa giá trị vừa nhập
     binary_tree = BinaryTree()
     binary_tree.add_root_node(first_val)
-
+    # Vòng lặp vô tận, khi bằng True thì kết thúc chương trình
     finish = False
     while finish is not True:
+        # Câu lệnh bằng số
         print()
         print("HELP: 1 - Danh sách nút, 2 - Thêm nút con, 3 - Tìm kiếm, 4 - Kết thúc")
         select = abs(int(input("Chọn 1 lệnh để thực hiện: ")))
